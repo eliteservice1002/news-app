@@ -1,0 +1,150 @@
+@import "./../../mainStyles/variables.scss";
+
+
+.news{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+.news-margin{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.news__inner{
+    border-radius: 20px;
+    overflow: hidden;
+    width: 90%;
+    height: 90%;
+    background: $main_color;
+}
+.news__posts{
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.news__menu_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: 100px;
+    
+    padding: 10px;
+    
+}
+
+.news__filters{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    
+    
+}
+
+.news__filter{
+    cursor: pointer;
+    border: transparent;
+  
+
+    &:hover{
+        animation: vibrate-1 0.3s linear infinite both;
+    }
+}
+
+.news__menu_logo{
+    width: 100px;
+    height: 100px;
+    fill:#fff
+}
+
+
+.article-size-color{
+    
+    background: $main_color_brighter;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 400px;
+    margin: 20px 0 20px;
+    position: relative;
+    color: #fff;
+    width: 100%;
+
+    
+}
+
+
+.atricle__title{
+    background: rgba(38, 39, 44, 0.7);
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    bottom: 0;
+    position: absolute;
+    font-size: 1.2rem;
+}
+
+
+.article_img{
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    
+}
+
+.atricle__additional-info{
+    background: $main_color;
+    text-align: center;
+    z-index: 1;
+    padding: 10px;
+    min-height: 30px;
+    min-width: 150px;
+    position: absolute;
+}
+.atricle__source{
+    right: 0;
+    border-radius: 0 0 0 20px;
+}
+
+.atricle__publishedAt{
+    left: 0;
+    border-radius: 0 0 20px ;
+}
+
+// .news___input-search{
+//     border: none;
+// }
+
+.burger-icon{
+    z-index: 11;
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+.burger-menu{
+    top: 0;
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    border-radius: 20px 0 0 20px;
+    width: 20%;
+    max-width: 300px;
+    min-height: 100px;
+    background: $main_color;
+}
+
+.burger-menu_link{
+    padding: 10px;
+   
+}
