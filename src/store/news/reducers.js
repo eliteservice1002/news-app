@@ -2,8 +2,8 @@ import orderBy from 'lodash/orderBy';
 import uniqBy from 'lodash/uniqBy';
 
 const initialState = {
-    news:[],
-    filteredNews:[],
+    news:null,
+    filteredNews:null,
     isLoading:true,
     inputValue:""
   };

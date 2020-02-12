@@ -1,10 +1,10 @@
-import React,{useCallback} from 'react';
+import React from 'react';
 import "./app.scss";
 // import { bindActionCreators } from 'redux';
-import {useDispatch,useSelector } from 'react-redux';
-import {BrowserRouter as Router, Route, Switch, NavLink,Link, withRouter} from 'react-router-dom';
+// import {useDispatch,useSelector } from 'react-redux';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import News from "./../components/mainPageNews/mainPageNewsContainer";
-import siglePageNews from "./../components/singlePageNews/singlePageNews";
+
 
 
 
@@ -12,8 +12,8 @@ import siglePageNews from "./../components/singlePageNews/singlePageNews";
 
 const  App = () => {
   
-  const dispatch = useDispatch(); 
-  const news  = useSelector(store => store.news)
+  // const dispatch = useDispatch(); 
+  // const news  = useSelector(store => store.news)
   
   
   // const plusOne = useCallback(
@@ -26,7 +26,7 @@ const  App = () => {
 
 
   
-  
+ 
   return (
     
     <div>
@@ -34,9 +34,8 @@ const  App = () => {
       <Router>
        
         <Switch>
-          <Route exact path="/" component={News} ></Route>
-          <Route exact path="/news/:url" component={siglePageNews} ></Route>
-          
+          <Route  path="/" component={News} ></Route>
+
         </Switch>
       </Router>
     </div>

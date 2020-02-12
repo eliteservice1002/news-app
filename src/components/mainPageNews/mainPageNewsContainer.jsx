@@ -2,6 +2,8 @@ import React,{useEffect,useState} from 'react';
 import MainPageNews from "./mainPageNews"
 import axios from 'axios';
 import { connect } from 'react-redux';
+import siglePageNews from "./../singlePageNews/singlePageNewsContainer";
+import {Route} from 'react-router-dom'
 
 import {useDispatch,useSelector } from 'react-redux';
 // import {searchByInputValue} from "./../../store/filter/actions.js"
@@ -13,7 +15,8 @@ import {loadPosts,fiterBy,searchByInputValue} from "./../../store/news/actions.j
 
 
 
-const NewsContainer = ({news ,filter,loadPosts,searchByInputValue,fiterBy}) => {
+const NewsContainer = ({news ,filter,loadPosts,searchByInputValue,fiterBy,location}) => {
+
     
     const [isBurger, openCloseBurger] = useState(false);
     
@@ -30,10 +33,10 @@ const NewsContainer = ({news ,filter,loadPosts,searchByInputValue,fiterBy}) => {
     
     
     
-    
+  
     return (
       
-      <div>
+      <>
       
       <MainPageNews 
       searchByInputValue={searchByInputValue}
@@ -43,15 +46,17 @@ const NewsContainer = ({news ,filter,loadPosts,searchByInputValue,fiterBy}) => {
       isLoading={news.isLoading}
       isOpenBurger={isBurger}
       OpenCloseBurger={isOpenBurger}
+      location={location}
       />
      
-      </div>
+     
+      </>
     );
 }
 
-const putStateToProps = ({filter,news}) => {
+const putStateToProps = ({news}) => {
       return{
-        filter,
+       
         news
     }
   }

@@ -8,7 +8,7 @@ export const setPosts = (articles) => {
 };
 export const loadPosts  = () => async (dispatch,state)=>{
   var url = 'https://newsapi.org/v2/top-headlines?' +
-          'country=ru&' +
+          'country=us&' +
           'apiKey=4365dc8abc9748608493215dcadbfceb';
   try {
     const news = await axios.get(url)
