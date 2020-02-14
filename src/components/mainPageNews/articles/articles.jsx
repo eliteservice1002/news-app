@@ -1,21 +1,30 @@
-import React,{useRef} from 'react';
-import { ReactComponent as Logo } from './assets/news.svg';
-import siglePageNews from "./../singlePageNews/singlePageNewsContainer";
-import {Route,Link} from 'react-router-dom'
+import React from 'react';
+import {Link} from 'react-router-dom'
+import "./style.scss";
+import Error404 from "./../../erorr404"
 
 // burger
-import Burger from '@animated-burgers/burger-slide';
-import '@animated-burgers/burger-slide/dist/styles.css' ;
 
 
 
 
-import "./style.scss";
+const Articles = ({posts}) => {
+    
+    if(posts.length === 0){
+        return <div>Not found a single post</div> 
+    }
 
+    
+    // console.log("TCL: before", posts[1].publishedAt)
 
+    //  let cleanDate = () =>{
+    //     return posts[1].publishedAt.replace(/[-:A-Z]/g," " )
+    // }
+   
 
+    // console.log("TCL: after",  cleanDate())
+    // console.log(new Date());
 
-const Articles = ({posts},url) => {
     
     return (
         <>
@@ -25,7 +34,7 @@ const Articles = ({posts},url) => {
                             <Link to={`/news/${id}`}>
                                 <article  className={`article article-size-color `}>
                                     <div className="atricle__additional-info atricle__source ">{post.source.name}</div>
-                                    <div className="atricle__additional-info atricle__publishedAt">{post.publishedAt}</div>
+                                    <div className="atricle__additional-info atricle__publishedAt">{post.publishedAt.replace(/[-A-Z]/g," " )}</div>
                                     <div className="atricle__title">{post.title}</div>
                                     <img src={post.urlToImage} alt="" className="article_img"/>
                                 </article>

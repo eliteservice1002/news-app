@@ -4,5 +4,5 @@ import filter from './filter/reducers';
 
 export default combineReducers({
     news,
-    filter
+    // filter
   });

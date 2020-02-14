@@ -1,0 +1,82 @@
+@import "./../../../mainStyles/variables.scss";
+.news__menu_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: 100px;
+    
+    padding: 10px;
+    
+}
+
+.news__filters{
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    
+    
+}
+
+.news__filter{
+    cursor: pointer;
+    border: transparent;
+  
+
+    &:hover{
+        animation: vibrate-1 0.3s linear infinite both;
+    }
+}
+
+.news__menu_logo{
+    width: 100px;
+    height: 100px;
+    fill:#fff
+}
+
+
+
+.burger-icon{
+    // z-index: 12;
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+.burger-menu{
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    position: absolute;
+    right: 0;
+    z-index: 11;
+    border-radius: 20px 0 0 20px;
+    width: 20%;
+    max-width: 300px;
+    min-height: 100px;
+    background: $main_color;
+}
+
+.burger-menu_btn{
+    color: #fff;
+    font-weight: 500;
+    padding: 10px;
+    
+    &:first-child{
+        margin-top: 70px;
+    }
+   
+}
+
+.burger-menu_btn_active{
+   
+    border: 3px solid #fff;
+    border-radius: 20px;
+    
+}
+
+.disabled-link{
+    opacity: 0.7;
+    pointer-events: none;    
+}

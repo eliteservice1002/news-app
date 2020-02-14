@@ -20,9 +20,12 @@ export const loadPosts  = () => async (dispatch,state)=>{
 
 }
 
-export const fiterBy = (type) =>({
-  type:"FILTER_BY",
-  payload:type
+export const fiterBy = (type,arrOfSources = []) =>({
+  type:"FILTER_BY_CAT",
+  payload:{
+    type,
+    arrOfSources
+  }
 
 })
 

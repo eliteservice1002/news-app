@@ -1,9 +1,9 @@
 import React from 'react';
 import "./app.scss";
-// import { bindActionCreators } from 'redux';
 // import {useDispatch,useSelector } from 'react-redux';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import News from "./../components/mainPageNews/mainPageNewsContainer";
+
 
 
 
@@ -32,11 +32,7 @@ const  App = () => {
     <div>
       
       <Router>
-       
-        <Switch>
           <Route  path="/" component={News} ></Route>
-
-        </Switch>
       </Router>
     </div>
   );

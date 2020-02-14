@@ -12,6 +12,16 @@ body{
 }
 
 
+button, 
+button:active, 
+button:focus {
+    outline: none;
+    border: none;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+
 // animations 
 
 
