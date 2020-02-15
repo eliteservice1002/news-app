@@ -1,5 +1,7 @@
 const initialState = {
-    inputValue:""
+    inputValue:"",
+    type:"",
+    // arrOfSources:[]
   };
   
   export default (state = initialState, action) => {
@@ -9,8 +11,15 @@ const initialState = {
           ...state,
           inputValue: action.payload,
         };
-      
+        case "FILTER_BY_CAT":
+          return{
+            ...state,
+            type:action.payload.type,
+            // arrOfSources:action.payload.arrOfSources,
+          }
       default:
         return state;
     }
   };
+
+  

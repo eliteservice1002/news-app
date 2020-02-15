@@ -1,6 +1,5 @@
 import React from 'react';
 import "./style.scss";
-import {Loader} from "./../loader"
 
 const SingleNews =({mainImg,title,content,originalSource}) => {
     

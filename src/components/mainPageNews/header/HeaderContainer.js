@@ -1,9 +1,9 @@
-import React,{useState,useRef,useEffect} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import {fiterBy,searchByInputValue} from "./../../../store/news/actions.js";
+import {fiterBy,searchByInputValue} from "./../../../store/filter/actions.js";
 import Header from "./Header"
 import uniq from 'lodash/uniq';
-import { withRouter } from "react-router";
+import {mainNews} from "./../../../store/selectors/news"
 
 
 
@@ -11,53 +11,37 @@ import { withRouter } from "react-router";
 
 
 
-const HeaderContainer = ({news ,fiterBy,history,searchByInputValue}) => {
+const HeaderContainer = ({isLoading,news,fiterBy,inputValue,searchByInputValue}) => {
 
     
-    // const [isBurger, openCloseBurger] = useState(false);
-    // const [className, addClass] = useState("");
-    // let burgerRefParent= useRef(null);
-    const [inputValue, onSearch] = useState("");
     
-    // const isOpenBurger = () => openCloseBurger(!isBurger);
 
     let namesOfSources =  () =>{
-      return uniq(news.news.map( art => art.source.name ))
+      return uniq(news.map( art => art.source.name ))
     }
     
-    // let  handleClickOutside = (event) => {
-    //   if (burgerRefParent.current && !burgerRefParent.current.contains(event.target)) {
-    //     openCloseBurger(false)
-    //   }
-    // }
-    // useEffect(() => {
-      
-    //   document.addEventListener("mousedown", handleClickOutside);
-    //   return () => {
-    //     document.removeEventListener("mousedown", handleClickOutside);
-    //   };
-    // });
-    
+    let catOfFiltering = ["latest","alphabetically"]
   
     return (
       
       
       <Header 
-      // searchByInputValue={onSearch}
       searchByInputValue={searchByInputValue}
-      value={news.inputValue}
-      // value={inputValue}
+      value={inputValue}
       filterBy={fiterBy}
       namesOfSource={namesOfSources()}
-      isLoading={news.isLoading}
+      isLoading={isLoading}
+      catOfFiltering={catOfFiltering}
        />
 
     );
 }
 
-const putStateToProps = ({news}) => {
+const putStateToProps = (state) => {
       return{
-        news
+        isLoading:state.news.isLoading,
+        inputValue:state.filter.inputValue,
+        news:mainNews(state)
     }
   }
 

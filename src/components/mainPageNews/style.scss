@@ -26,9 +26,17 @@
     
     min-height: 80vh;
     display: flex;
+    // align-items: center;
+    justify-content: flex-start;
+    // justify-content: center;
+    flex-wrap: wrap;
+}
+
+.news__loader{
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
 

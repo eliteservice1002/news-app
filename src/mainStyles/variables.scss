@@ -133,3 +133,21 @@ button:focus {
       transform: rotate(360deg);
     }
   }
+
+
+  @keyframes slide-left {
+  0% {
+    transform: translateX(200px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+  @keyframes slide-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200px);
+  }
+}

@@ -11,9 +11,14 @@ import Error404 from "./../../erorr404"
 const Articles = ({posts}) => {
     
     if(posts.length === 0){
-        return <div>Not found a single post</div> 
+        return <div className="not-founded-post">Not found a single post</div> 
     }
 
+    let currentTime = new DataCue;
+    console.log("TCL: currentTime", currentTime)
+
+    let offset = new Date().getTimezoneOffset();
+    console.log("TCL: offset", offset)
     
     // console.log("TCL: before", posts[1].publishedAt)
 
@@ -30,7 +35,7 @@ const Articles = ({posts}) => {
         <>
             {
                 posts.map( (post,id)=>(
-                        <div key={id} className={`${id%5?"col-6 col-md-4 ":"col-12 col-md-8 "}`}>
+                        <div key={id} className={`${id%5?"col-6 col-lg-4 ":"col-12 col-lg-8 "}`}>
                             <Link to={`/news/${id}`}>
                                 <article  className={`article article-size-color `}>
                                     <div className="atricle__additional-info atricle__source ">{post.source.name}</div>

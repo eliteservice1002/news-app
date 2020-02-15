@@ -22,10 +22,12 @@ const Header = React.memo(({
     namesOfSource,
     history,
     isLoading,
+    catOfFiltering
     }) => {
 
     const [isBurger, openCloseBurger] = useState(false);
-    const [className, addClass] = useState("");
+    const [isDisSources, disSources] = useState("");
+    const [isFilterCat, disFilterCat] = useState("latest");
     let burgerRef = useRef(null);
 
     let  handleClickOutside = (event) => {
@@ -52,10 +54,16 @@ const Header = React.memo(({
                         <Logo className="news__menu_logo" />
                     </Link>
                         
-                        <div
-                        className={`news__filters ${history.location.pathname !== "/" ? "disabled-link":""}`}>
-                            <div  onClick={() => filterBy("latest")} className="news__filter">Latest news</div>
-                            <div  onClick={() => filterBy("alphabetically")} className="news__filter">Alphabetically</div>
+                        <div className={`news__filters ${history.location.pathname !== "/" ? "disabled-link":""}`}>
+
+                            {catOfFiltering.map((cat,id)=>(
+                                <div  key={id} onClick={() => {
+                                    disFilterCat(cat)
+                                    filterBy(cat)
+                                    }} 
+                                    className={`news__filter ${isFilterCat == cat?"disabled-link":""}`}>{cat} news</div>
+                            ))}
+                            
                             <input type="text" 
                             className="news___input-search input-group-text"
                             value={value}
@@ -65,25 +73,25 @@ const Header = React.memo(({
                         </div>
                         <Burger className="burger-icon"  onClick={(e) => openCloseBurger(e)}   isOpen={isBurger}   />
                         {(isBurger && !isLoading) && 
-                        <div ref={burgerRef} className="burger-menu">
+                        <div ref={burgerRef} className={`burger-menu ${isBurger?"burger-menu_open":"burger-menu_close"}`}>
+                            <div onClick={() => openCloseBurger()} className="burger-menu__close_btn">X</div>
                             <button 
-                            disabled={"home" == className?true:false} 
-                            className={`burger-menu_btn ${"home" == className? "burger-menu_btn_active ":''}`} 
+                            className={`burger-menu_btn ${"home" == isDisSources? "burger-menu_btn_active disabled-link":''}`} 
                             onClick={() =>{
                                 history.push("/")
                                 filterBy("home") 
-                                addClass("home")
+                                disSources("home")
                             }}
                             >All</button>
                             {namesOfSource.map((name,id)=>(
                                 <button key={id} onClick={() =>{
                                     history.push("/")
                                     filterBy(name,namesOfSource ) 
-                                    addClass(name)
+                                    disSources(name)
                                 }}
-                                disabled={name == className?true:false} 
+                                disabled={name == isDisSources?true:false} 
                                     
-                                    className={`burger-menu_btn ${name == className? "burger-menu_btn_active ":''}`}>{name}</button>
+                                    className={`burger-menu_btn ${name == isDisSources? "burger-menu_btn_active ":''}`}>{name}</button>
                             ))}
                             
                             

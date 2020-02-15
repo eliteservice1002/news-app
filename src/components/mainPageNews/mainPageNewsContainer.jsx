@@ -2,6 +2,8 @@ import React,{useEffect,useState,useRef} from 'react';
 import MainPageNews from "./mainPageNews"
 import { connect } from 'react-redux';
 import {loadPosts} from "./../../store/news/actions.js"
+// import {getFilteredNews} from "./../../store/selectors/news"
+import {getFilteredNews} from "./../../store/selectors/news"
 
 
 
@@ -9,29 +11,28 @@ import {loadPosts} from "./../../store/news/actions.js"
 
 
 
-const NewsContainer = ({news ,loadPosts,history}) => {
+const NewsContainer = ({filteredNews ,news,loadPosts,history}) => {
 
     
     
     useEffect( () => {
-     loadPosts()
-
+      loadPosts()
     }, []); 
-
-    
 
     return (
       <MainPageNews
-      posts={news.filteredNews} 
+
+      posts={filteredNews} 
       isLoading={news.isLoading}
       history={history}
       />
     );
 }
 
-const putStateToProps = ({news}) => {
+const putStateToProps = (store,props) => {
       return{
-        news
+        news:store.news,
+        filteredNews:getFilteredNews(store)
     }
   }
 
