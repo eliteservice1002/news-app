@@ -1,17 +1,23 @@
-import React,{useCallback} from 'react';
+import React,{useCallback,useMemo} from 'react';
 import {useDispatch,useSelector } from 'react-redux';
 import {fiterBy,searchByInputValue,fiterBySource} from "../../store/filter/actions";
 import Header from "./Header"
-import uniq from 'lodash/uniq';
-import {mainNews,inputValueSelector} from "../../store/selectors/news"
+import {inputValueSelector,namesOfSources,isFullPosts} from "../../store/selectors/news"
 
 
 
 const HeaderContainer = () => {
 
-    const news = useSelector(state =>mainNews(state));
+    const slcNamesOfSources = useMemo(namesOfSources,[])
+    const sources = useSelector(state =>slcNamesOfSources(state));
+
     const isLoading = useSelector(state =>state.news.isLoading);
-    const inputValue = useSelector(state =>inputValueSelector(state));
+    const isFullPostsParent = useSelector(state =>isFullPosts(state));
+    
+    const slcInputValueSelector = useMemo(inputValueSelector,[])
+    const inputValue = useSelector(state =>slcInputValueSelector(state));
+    
+
     const dispatch = useDispatch();
     
 
@@ -31,9 +37,10 @@ const HeaderContainer = () => {
       fiterBySource={useCallback((type)=>
         dispatch(fiterBySource(type)),[dispatch])}
 
-      namesOfSource={uniq(news.map( art => art.source.name ))}
       isLoading={isLoading}
       catOfFiltering={catOfFiltering}
+      namesOfSource={sources}
+      isFullPostsChildren = {isFullPostsParent}
        />
 
     );

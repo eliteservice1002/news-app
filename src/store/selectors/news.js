@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
 import orderBy from 'lodash/orderBy';
+import uniq from 'lodash/uniq';
 
 
 const news = state => state.news.news;
@@ -11,11 +12,14 @@ export const mainNews = createSelector(
     [news],
     news => news
 )
-export const inputValueSelector = createSelector(
+export const inputValueSelector = () => createSelector(
     [inputValue],
     value => value
 )
-
+export const namesOfSources = () => createSelector(
+    [news],
+    news =>uniq( news.map( art => art.source.name ))
+)
 
 
 
@@ -63,6 +67,12 @@ export const getSingleFilteredNews = () =>
             }
         )
 
+export const isFullPosts  = createSelector(
+    [getFilteredNews(),],
+    (posts) =>{
+        return posts.length 
+    }
+)
 
 
 

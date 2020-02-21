@@ -21,9 +21,10 @@ const Header = ({
     history,
     isLoading,
     catOfFiltering,
-    fiterBySource
+    fiterBySource,
+    isFullPostsChildren
     }) => {
-
+        console.log(isFullPostsChildren);
     const [isBurger, openCloseBurger] = useState(false);
     const [isDisSources, disSources] = useState("");
     const [isFilterCat, disFilterCat] = useState("latest");
@@ -48,7 +49,7 @@ const Header = ({
                     <Link to="/" onClick={()=>{
                         fiterBySource("")
                         }} 
-                        className={`${history.location.pathname === "/" ? "disabled-link":""}`}
+                        className={`${(history.location.pathname === "/" && isFullPostsChildren !== fiterBySource.length ) ? "disabled-link":""}`}
                         >
                         <Logo className="news__menu_logo" />
                     </Link>
@@ -60,7 +61,7 @@ const Header = ({
                                     disFilterCat(cat)
                                     filterBy(cat)
                                     }} 
-                                    className={`news__filter ${isFilterCat === cat?"disabled-link":""}`}>{cat} news</div>
+                                    className={`news__filter ${(isFilterCat === cat || isFullPostsChildren == 1)?"disabled-link":""}`}>{cat} news</div>
                             ))}
                             
                             <input type="text" 

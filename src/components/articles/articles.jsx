@@ -17,7 +17,7 @@ const Articles = ({posts}) => {
         <>
             {
                 posts.map( (post,id)=>(
-                        <div key={id} className={`${id%5?"col-12 col-sm-6 col-lg-4 ":"col-12   col-lg-8"}`}>
+                        <div key={id} className={`${id%5?"col-12 col-sm-6 col-lg-4 ":"col-12 col-lg-8"}`}>
                             <Link to={`/news/${id}`}>
                                 <article  className={`article article-size-color `}>
                                     <div className="atricle__additional-info atricle__source ">{post.source.name}</div>

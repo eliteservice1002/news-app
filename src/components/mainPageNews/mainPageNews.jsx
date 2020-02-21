@@ -1,5 +1,5 @@
 import React,{memo} from 'react';
-import siglePageNews from "./../singlePageNews/singlePageNewsContainer";
+import singlePageNews from "./../singlePageNews/singlePageNewsContainer";
 import {Route,Switch} from 'react-router-dom'
 import Header from "../header/HeaderContainer"
 import Error404 from "./../erorr404"
@@ -24,7 +24,7 @@ const News = ({
                         <>
                             <Switch>
                                 <Route exact path="/" ><Articles /></Route>
-                                <Route exact path="/news/:url" component={siglePageNews} />
+                                <Route exact path="/news/:url" component={singlePageNews} />
                                 <Route exact path="**" component={Error404} />
                             </Switch>
                          </>}
