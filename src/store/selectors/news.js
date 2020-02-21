@@ -26,7 +26,6 @@ export const namesOfSources = () => createSelector(
  const newsFilteredByType = createSelector(
     [type,news],
     (type,news) =>{
-    console.log("TCL: type", type)
         switch (type) {
             case "latest":
             return orderBy(news,"publishedAt","desc")
@@ -68,9 +67,9 @@ export const getSingleFilteredNews = () =>
         )
 
 export const isFullPosts  = createSelector(
-    [getFilteredNews(),],
-    (posts) =>{
-        return posts.length 
+    [getFilteredNews(),news],
+    (posts,news) =>{
+        return posts.length === news.length
     }
 )
 

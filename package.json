@@ -40,9 +40,9 @@
     "jest-environment-jsdom-fourteen": "1.0.1",
     "jest-resolve": "24.9.0",
     "jest-watch-typeahead": "0.4.2",
+    "json-server": "^0.16.0",
     "less": "^3.10.3",
     "mini-css-extract-plugin": "0.9.0",
-    "node-less": "^1.0.0",
     "node-sass": "^4.13.1",
     "normalize.css": "^8.0.1",
     "optimize-css-assets-webpack-plugin": "5.0.3",
@@ -153,7 +153,5 @@
       "react-app"
     ]
   },
-  "devDependencies": {
-    "less-loader": "^5.0.0"
-  }
+  "devDependencies": {}
 }

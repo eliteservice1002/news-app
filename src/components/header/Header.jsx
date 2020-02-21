@@ -24,7 +24,6 @@ const Header = ({
     fiterBySource,
     isFullPostsChildren
     }) => {
-        console.log(isFullPostsChildren);
     const [isBurger, openCloseBurger] = useState(false);
     const [isDisSources, disSources] = useState("");
     const [isFilterCat, disFilterCat] = useState("latest");
@@ -36,7 +35,6 @@ const Header = ({
         }
       }
       useEffect(() => {
-        
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
           document.removeEventListener("mousedown", handleClickOutside);
@@ -49,7 +47,7 @@ const Header = ({
                     <Link to="/" onClick={()=>{
                         fiterBySource("")
                         }} 
-                        className={`${(history.location.pathname === "/" && isFullPostsChildren !== fiterBySource.length ) ? "disabled-link":""}`}
+                        className={`${(history.location.pathname === "/" && isFullPostsChildren) ? "disabled-link":""}`}
                         >
                         <Logo className="news__menu_logo" />
                     </Link>
@@ -61,7 +59,7 @@ const Header = ({
                                     disFilterCat(cat)
                                     filterBy(cat)
                                     }} 
-                                    className={`news__filter ${(isFilterCat === cat || isFullPostsChildren == 1)?"disabled-link":""}`}>{cat} news</div>
+                                    className={`news__filter ${(isFilterCat === cat || !isFullPostsChildren )?"disabled-link":""}`}>{cat} news</div>
                             ))}
                             
                             <input type="text" 
