@@ -1,12 +1,15 @@
-@import "./../../../mainStyles/variables.scss";
+@import "./../../mainStyles/variables.scss";
 .news__menu_header{
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: relative;
     height: 100px;
-    
     padding: 10px;
+
+    @include phone{
+        height: 80px;
+    }
     
 }
 
@@ -16,13 +19,18 @@
     align-items: center;
     justify-content: space-between;
     width: 70%;
+    flex-wrap: wrap;
     
+    @include phone{
+        justify-content: center;
+    }
     
 }
 
 .news__filter{
     cursor: pointer;
     border: transparent;
+    margin: 0 10px;
   
 
     &:hover{
@@ -33,13 +41,26 @@
 .news__menu_logo{
     width: 100px;
     height: 100px;
-    fill:#fff
+    fill:#fff;
+    @include phone{
+        width: 60px;
+    }
+
+    
+}
+
+.news___input-search{
+   
+    max-width: 150px;
+    @include phone{
+    height: 30px;
+       width: 80%;
+    }
 }
 
 
 
 .burger-icon{
-    // z-index: 12;
     margin-right: 20px;
     font-size: 14px;
 }
@@ -64,36 +85,45 @@
     max-width: 300px;
     min-height: 100px;
     background: $main_color;
+    min-width: 250px;
+
+    @include phone{
+        
+    }
     
 }
 .burger-menu_open{
-    
-    animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;   
+    display: flex;
+    animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940)  both;   
+    // animation-fill-mode:
 }
-// .burger-menu_close{
-//     // display: none;
-//     animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;  
-// }
+.burger-menu_close{
+    animation: slide-right 0.1s cubic-bezier(0.250, 0.460, 0.450, 0.940) reverse both;  
+    // display: none;
+}
 
 
 
 
 
-.burger-menu_btn{
+
+.burger-menu__btn{
     color: #fff;
     font-weight: 500;
     padding: 10px;
-    
+    user-select: none; 
     &:first-child{
-        margin-top: 70px;
+        padding-top: 200px;
+        margin-top: 40px;
     }
    
 }
 
-.burger-menu_btn_active{
-   
-    border: 3px solid #fff;
+.burger-menu__btn_active{
+   pointer-events: none;
+    border: 3px solid #fff !important;
     border-radius: 20px;
+    
     
 }
 

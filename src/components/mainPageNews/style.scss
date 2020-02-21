@@ -21,6 +21,10 @@
     width: 90%;
     height: 90%;
     background: $main_color;
+    @include phone{
+        width: 100%;
+    }
+
 }
 .news__posts{
     

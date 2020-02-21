@@ -1,56 +1,34 @@
-import React from 'react';
-import {connect} from "react-redux"
-import { useRouteMatch } from "react-router-dom";
+import React,{useMemo} from 'react';
+import {useSelector} from "react-redux"
 import SinglePageNews from "./singlePageNews"
-import Error404 from "./../erorr404";
-import {getFilteredNews} from "./../../store/selectors/news"
+import Error404 from "../erorr404";
+import {getSingleFilteredNews} from "../../store/selectors/news"
 
 
 
-const SingleNews =({filteredNews,isLoading}) => {
-
+const SingleNews =({match}) => {
+    const selectFilteredNews = useMemo(getSingleFilteredNews,[])
+    const filteredNews = useSelector(state =>selectFilteredNews(state,match))
+    const isLoading = useSelector(state =>state.news.isLoading)
 
 
    
-const paramsUrl = useRouteMatch().params.url;
 
-    if(filteredNews[paramsUrl] == undefined ){
+    if(filteredNews === undefined ){
         return <Error404/>
-    }else if(filteredNews.length === 0){
-        return(
-            <div>Not found a single post</div>
-        )
     }
+    
     
     
     return (
         <SinglePageNews
         isLoading={isLoading}
-        mainImg={filteredNews[paramsUrl].urlToImage}
-        title={filteredNews[paramsUrl].title}
-        content={filteredNews[paramsUrl].content}
-        originalSource={filteredNews[paramsUrl].url}
-        
+        mainImg={filteredNews.urlToImage}
+        title={filteredNews.title}
+        content={filteredNews.content}
         />
     );
 }
 
 
-
-
-
-const putStateToProps = (state,{match}) => {
-    return{
-    isLoading:state.news.loading,
-    filteredNews:getFilteredNews(state)
-  }
-}
-
-const putDispatchToProps =  {
-
-}
-
-export default connect(
-putStateToProps,
-putDispatchToProps,
-)(SingleNews);
+export default SingleNews;

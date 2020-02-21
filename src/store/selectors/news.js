@@ -5,42 +5,63 @@ import orderBy from 'lodash/orderBy';
 const news = state => state.news.news;
 const inputValue = state => state.filter.inputValue;
 const type = state => state.filter.type;
-// const arrOfSources = state => state.filter.arrOfSources;
-
-// const url = (getFilteredNews,url) => [url]
+const sourceToFilter = state => state.filter.sourceToFilter;
 
 export const mainNews = createSelector(
     [news],
     news => news
 )
-
-
-const newsFilteredByinput  = createSelector(
-    [news,inputValue],
-    (news,value) => news.filter( o => o.title.toLowerCase().indexOf(value.toLowerCase()) >= 0)
+export const inputValueSelector = createSelector(
+    [inputValue],
+    value => value
 )
 
-export const getFilteredNews = createSelector(
-    [newsFilteredByinput,type,news],
-    (newsFilteredByinput,type,news) =>{
-        if(type == "latest"){
-            return orderBy(newsFilteredByinput,"publishedAt","desc")
-        }else if(type == "alphabetically"){
-            return orderBy(newsFilteredByinput,"title","asc")
-        }else if(newsFilteredByinput.some(s =>s.source.name == type) ){
-            return newsFilteredByinput.filter( o => o.source.name.toLowerCase().indexOf(type.toLowerCase()) >= 0)
-        }else{
-            return newsFilteredByinput
+
+
+
+ const newsFilteredByType = createSelector(
+    [type,news],
+    (type,news) =>{
+    console.log("TCL: type", type)
+        switch (type) {
+            case "latest":
+            return orderBy(news,"publishedAt","desc")
+            case "alphabetically":
+                return orderBy(news,"title","asc")
+            default:
+            return news
         }
         
     }
     
 )
 
-// export const getSingleFilteredNews = createSelector(
-//     [getFilteredNews],
-//     (news,a) => console.log("TCL: news", a)
-// )
+export const getFilteredNews  = () =>
+        createSelector(
+            [newsFilteredByType,inputValue,sourceToFilter],
+            (news,value,type) => {
+                if(type !== ""){
+                    return news.filter( o => o.source.name.toLowerCase().indexOf(type.toLowerCase()) >= 0)
+                }else if(value !==""){
+                    return news.filter( o => o.title.toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                }else{
+                    return news
+                }
+                
+            }
+        )
+
+
+
+export const getSingleFilteredNews = () =>
+
+        createSelector(
+            [getFilteredNews(),
+            (_,match) =>match.params.url],
+            (news,url) =>{
+                return news[url]
+            }
+        )
 
 
 

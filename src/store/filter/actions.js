@@ -1,8 +1,16 @@
-export const fiterBy = (type,arrOfSources = []) =>({
+export const fiterBy = (type) =>({
   type:"FILTER_BY_CAT",
   payload:{
     type,
-    arrOfSources
+    
+  }
+})
+
+export const fiterBySource = (type) =>({
+  type:"FILTER_BY_SOURCE",
+  payload:{
+    type,
+    
   }
 })
 

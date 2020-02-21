@@ -1,28 +1,27 @@
-import React,{useEffect,useState,useRef} from 'react';
+import React,{useEffect,useState,useRef,memo} from 'react';
 import { withRouter } from "react-router";
-import { ReactComponent as Logo } from './news.svg';
+import { ReactComponent as Logo } from './assets/news.svg';
 import {Link} from 'react-router-dom'
 
 // burger
 import Burger from '@animated-burgers/burger-slide';
 import '@animated-burgers/burger-slide/dist/styles.css' ;
-
-
-
+// 
 
 import "./style.scss";
 
 
 
 
-const Header = React.memo(({
+const Header = ({
     searchByInputValue,
     value,
     filterBy,
     namesOfSource,
     history,
     isLoading,
-    catOfFiltering
+    catOfFiltering,
+    fiterBySource
     }) => {
 
     const [isBurger, openCloseBurger] = useState(false);
@@ -46,8 +45,8 @@ const Header = React.memo(({
     return (
             
                 <div className="news__menu_header">
-                    <Link to="/" onClick={(e)=>{
-                        filterBy("home")
+                    <Link to="/" onClick={()=>{
+                        fiterBySource("")
                         }} 
                         className={`${history.location.pathname === "/" ? "disabled-link":""}`}
                         >
@@ -61,7 +60,7 @@ const Header = React.memo(({
                                     disFilterCat(cat)
                                     filterBy(cat)
                                     }} 
-                                    className={`news__filter ${isFilterCat == cat?"disabled-link":""}`}>{cat} news</div>
+                                    className={`news__filter ${isFilterCat === cat?"disabled-link":""}`}>{cat} news</div>
                             ))}
                             
                             <input type="text" 
@@ -72,36 +71,35 @@ const Header = React.memo(({
                             />
                         </div>
                         <Burger className="burger-icon"  onClick={(e) => openCloseBurger(e)}   isOpen={isBurger}   />
-                        {(isBurger && !isLoading) && 
-                        <div ref={burgerRef} className={`burger-menu ${isBurger?"burger-menu_open":"burger-menu_close"}`}>
+                        <div ref={burgerRef} className={`burger-menu ${(isBurger && !isLoading) ?"burger-menu_open":"burger-menu_close"}`}>
                             <div onClick={() => openCloseBurger()} className="burger-menu__close_btn">X</div>
                             <button 
-                            className={`burger-menu_btn ${"home" == isDisSources? "burger-menu_btn_active disabled-link":''}`} 
+                            className={`burger-menu__btn ${"home" === isDisSources? "burger-menu__btn_active":''}`} 
                             onClick={() =>{
                                 history.push("/")
-                                filterBy("home") 
+                                fiterBySource("") 
                                 disSources("home")
                             }}
                             >All</button>
                             {namesOfSource.map((name,id)=>(
                                 <button key={id} onClick={() =>{
                                     history.push("/")
-                                    filterBy(name,namesOfSource ) 
+                                    fiterBySource(name) 
                                     disSources(name)
                                 }}
-                                disabled={name == isDisSources?true:false} 
+                                disabled={name === isDisSources?true:false} 
                                     
-                                    className={`burger-menu_btn ${name == isDisSources? "burger-menu_btn_active ":''}`}>{name}</button>
+                                    className={`burger-menu__btn ${name === isDisSources? "burger-menu__btn_active":''}`}>{name}</button>
                             ))}
                             
                             
-                        </div>}
+                        </div>
 
                 </div>
     );
-})
+}
 
 
 
 
-export default withRouter(Header);
+export default memo(withRouter(Header));

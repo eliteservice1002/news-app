@@ -1,12 +1,9 @@
-import React from 'react';
+import React,{memo} from 'react';
 import siglePageNews from "./../singlePageNews/singlePageNewsContainer";
 import {Route,Switch} from 'react-router-dom'
-import Header from "./header/HeaderContainer"
+import Header from "../header/HeaderContainer"
 import Error404 from "./../erorr404"
-
-// burger
-import Articles from "./articles/articles"
-
+import Articles from "./../articles/articlesContainer"
 
 
 import "./style.scss";
@@ -14,15 +11,11 @@ import "./style.scss";
 
 
 
-const News = React.memo(({
-    posts,
+const News = ({
     isLoading 
     }) => {
-    
-    
-    
-   
-    return (
+
+        return (
             <div className=" news news-margin">
                 <div className="news__inner ">
                     <Header/>
@@ -30,7 +23,7 @@ const News = React.memo(({
                         {isLoading ? loader():
                         <>
                             <Switch>
-                                <Route exact path="/" ><Articles posts={posts} /></Route>
+                                <Route exact path="/" ><Articles /></Route>
                                 <Route exact path="/news/:url" component={siglePageNews} />
                                 <Route exact path="**" component={Error404} />
                             </Switch>
@@ -41,7 +34,7 @@ const News = React.memo(({
                 </div>
             </div>
     );
-})
+}
 
 const loader = () =>(
     <div className="news__loader">
@@ -51,4 +44,4 @@ const loader = () =>(
 
 
 
-export default News;
+export default memo(News);

@@ -1,4 +1,4 @@
-@import "./../../../mainStyles/variables.scss";
+@import "./../../mainStyles/variables.scss";
 
 .article-size-color{
     
@@ -6,10 +6,22 @@
     border-radius: 20px;
     overflow: hidden;
     height: 400px;
-    margin: 20px 0 20px;
+    margin:  20px 0; 
     position: relative;
     color: #fff;
     width: 100%;
+
+    @include xl{
+        height: 300px;
+    }
+    @include lg{
+        height: 250px;
+    }
+
+    @include phone{
+        height: 200px;
+        margin: 10px 0;
+    }
 
     
 }
@@ -17,7 +29,7 @@
 
 .atricle__title{
     background: rgba(38, 39, 44, 0.7);
-    height: 80px;
+    min-height: 80px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -25,6 +37,11 @@
     bottom: 0;
     position: absolute;
     font-size: 1.2rem;
+    padding: 0 10px 10px 10px;
+
+     @include xl{
+        font-size: 0.9rem;
+    }
 }
 
 

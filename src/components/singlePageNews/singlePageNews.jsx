@@ -1,7 +1,13 @@
-import React from 'react';
+import React,{useEffect,memo } from 'react';
 import "./style.scss";
+import { useLocation } from "react-router-dom";
 
-const SingleNews =({mainImg,title,content,originalSource}) => {
+const SingleNews =({mainImg,title,content}) => {
+    const { pathname } = useLocation();
+    
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, [pathname]);
     
     
     return (
@@ -15,7 +21,6 @@ const SingleNews =({mainImg,title,content,originalSource}) => {
                         <div className="single-news_title">{title}</div>
                         <div className="single-news-content">{content}</div>
                     </div>
-                    {/* <div className="single-news__original-source">{originalSource}</div> */}
             </div>
         </>
     
@@ -24,4 +29,4 @@ const SingleNews =({mainImg,title,content,originalSource}) => {
 
 
 
-export default SingleNews;
+export default memo(SingleNews);
