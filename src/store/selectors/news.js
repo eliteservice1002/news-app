@@ -18,8 +18,12 @@ export const inputValueSelector = () => createSelector(
 )
 export const namesOfSources = () => createSelector(
     [news],
-    news =>uniq( news.map( art => art.source.name ))
+    news =>{
+        return uniq( news.map( art => art.source.name ))
+    }
 )
+
+// staff
 
 
 
@@ -72,6 +76,7 @@ export const isFullPosts  = createSelector(
         return posts.length === news.length
     }
 )
+
 
 
 

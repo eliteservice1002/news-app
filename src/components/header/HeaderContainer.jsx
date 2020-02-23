@@ -3,6 +3,7 @@ import {useDispatch,useSelector } from 'react-redux';
 import {fiterBy,searchByInputValue,fiterBySource} from "../../store/filter/actions";
 import Header from "./Header"
 import {inputValueSelector,namesOfSources,isFullPosts} from "../../store/selectors/news"
+// import {}
 
 
 
@@ -19,6 +20,8 @@ const HeaderContainer = () => {
     
 
     const dispatch = useDispatch();
+
+    
     
 
     let catOfFiltering = ["latest","alphabetically"]
@@ -36,6 +39,7 @@ const HeaderContainer = () => {
 
       fiterBySource={useCallback((type)=>
         dispatch(fiterBySource(type)),[dispatch])}
+
 
       isLoading={isLoading}
       catOfFiltering={catOfFiltering}

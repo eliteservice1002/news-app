@@ -80,7 +80,7 @@ const Header = ({
                                 disSources("home")
                             }}
                             >All</button>
-                            {namesOfSource.map((name,id)=>(
+                            { namesOfSource.map((name,id)=>(
                                 <button key={id} onClick={() =>{
                                     history.push("/")
                                     fiterBySource(name) 
@@ -88,7 +88,7 @@ const Header = ({
                                 }}
                                 disabled={name === isDisSources?true:false} 
                                     
-                                    className={`burger-menu__btn ${name === isDisSources? "burger-menu__btn_active":''}`}>{name}</button>
+                                className={`burger-menu__btn ${name === isDisSources? "burger-menu__btn_active":''}`}>{name}</button>
                             ))}
                             
                             

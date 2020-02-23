@@ -12,13 +12,14 @@ import "./style.scss";
 
 
 const News = ({
-    isLoading 
+    isLoading ,
     }) => {
 
         return (
             <div className=" news news-margin">
                 <div className="news__inner ">
                     <Header/>
+                    
                     <div className="news__posts">
                         {isLoading ? loader():
                         <>
