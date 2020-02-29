@@ -23,8 +23,6 @@ export const namesOfSources = () => createSelector(
     }
 )
 
-// staff
-
 
 
  const newsFilteredByType = createSelector(

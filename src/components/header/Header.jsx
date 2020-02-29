@@ -43,7 +43,7 @@ const Header = ({
    
     return (
             
-                <div className="news__menu_header">
+                <header className="news__menu_header">
                     <Link to="/" onClick={()=>{
                         fiterBySource("")
                         }} 
@@ -62,12 +62,12 @@ const Header = ({
                                     className={`news__filter ${(isFilterCat === cat || !isFullPostsChildren )?"disabled-link":""}`}>{cat} news</div>
                             ))}
                             
-                            <input type="text" 
-                            className="news___input-search input-group-text"
-                            value={value}
-                            onChange={e => searchByInputValue(e.target.value)}
-                            disabled={history.location.pathname !== "/"?true:false}
-                            />
+                        <input type="text" 
+                        className="news___input-search input-group-text"
+                        value={value}
+                        onChange={e => searchByInputValue(e.target.value)}
+                        disabled={history.location.pathname !== "/"?true:false}
+                        />
                         </div>
                         <Burger className="burger-icon"  onClick={(e) => openCloseBurger(e)}   isOpen={isBurger}   />
                         <div ref={burgerRef} className={`burger-menu ${(isBurger && !isLoading) ?"burger-menu_open":"burger-menu_close"}`}>
@@ -94,7 +94,7 @@ const Header = ({
                             
                         </div>
 
-                </div>
+                </header>
     );
 }
 

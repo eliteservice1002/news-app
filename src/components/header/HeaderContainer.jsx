@@ -1,8 +1,8 @@
 import React,{useCallback,useMemo} from 'react';
 import {useDispatch,useSelector } from 'react-redux';
-import {fiterBy,searchByInputValue,fiterBySource} from "../../store/filter/actions";
+import {fiterBy,searchByInputValue,fiterBySource} from "../../redux/filter-reducers";
 import Header from "./Header"
-import {inputValueSelector,namesOfSources,isFullPosts} from "../../store/selectors/news"
+import {inputValueSelector,namesOfSources,isFullPosts} from "../../redux/news-selectors"
 // import {}
 
 
@@ -18,11 +18,7 @@ const HeaderContainer = () => {
     const slcInputValueSelector = useMemo(inputValueSelector,[])
     const inputValue = useSelector(state =>slcInputValueSelector(state));
     
-
     const dispatch = useDispatch();
-
-    
-    
 
     let catOfFiltering = ["latest","alphabetically"]
   

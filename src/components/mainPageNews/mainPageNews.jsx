@@ -12,7 +12,7 @@ import "./style.scss";
 
 
 const News = ({
-    isLoading ,
+    isLoading ,error
     }) => {
 
         return (
@@ -22,13 +22,14 @@ const News = ({
                     
                     <div className="news__posts">
                         {isLoading ? loader():
-                        <>
+                            error == null ?(
                             <Switch>
-                                <Route exact path="/" ><Articles /></Route>
+                                <Route exact path="/" component={Articles}/>
                                 <Route exact path="/news/:url" component={singlePageNews} />
                                 <Route exact path="**" component={Error404} />
                             </Switch>
-                         </>}
+                            ):<Route exact path="**" component={Error404} />
+                         }
                          
                          
                     </div>

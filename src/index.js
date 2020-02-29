@@ -9,16 +9,7 @@ import 'normalize.css';
 
 import { Provider } from "react-redux";
 
-import { createStore, applyMiddleware,compose  } from 'redux';
-import logger from 'redux-logger';
-import thunk from 'redux-thunk';
-import rootReducer from './store/reducers.js';
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
-
-
+import store from "./redux/store"
 
 ReactDOM.render(
       <Provider store={store}>

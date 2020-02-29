@@ -3,7 +3,7 @@ import "./style.scss";
 
 const  Error404 = () => (
     <div className="news__erorr404">
-            404ERROR
+            ERROR404
     </div>
 )
 

@@ -2,7 +2,7 @@ import React,{useMemo} from 'react';
 import {useSelector} from "react-redux"
 import SinglePageNews from "./singlePageNews"
 import Error404 from "../erorr404";
-import {getSingleFilteredNews} from "../../store/selectors/news"
+import {getSingleFilteredNews} from "../../redux/news-selectors"
 
 
 
@@ -17,8 +17,6 @@ const SingleNews =({match}) => {
     if(filteredNews === undefined ){
         return <Error404/>
     }
-    
-    
     
     return (
         <SinglePageNews
