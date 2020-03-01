@@ -77,7 +77,7 @@ export const setIsLoadingMore = () => {
 
 
 export const loadPosts  = (cnt) => async (dispatch)=>{
-  var url = `http://newsapi.org/v2/top-headlines?country=us&pageSize=${cnt}&apiKey=${NEWS_API_KEY}`;
+  var url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=${cnt}&apiKey=${NEWS_API_KEY}`;
   try {
     const news = await axios.get(url)
     dispatch(setPosts(news.data.articles,news.data.totalResults));
