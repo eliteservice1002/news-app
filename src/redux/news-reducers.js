@@ -6,6 +6,9 @@ const SET_POSTS_FAILED = "news-app/news/SET_POSTS_FAILED";
 const SET_IS_LOADING = "news-app/news/SET_IS_LOADING";
 
 
+const NEWS_API_KEY = process.env.REACT_APP_API_KEY;
+
+
 
 const initialState = {
     news:[],
@@ -74,7 +77,7 @@ export const setIsLoadingMore = () => {
 
 
 export const loadPosts  = (cnt) => async (dispatch)=>{
-  var url = `http://newsapi.org/v2/top-headlines?country=us&pageSize=${cnt}&apiKey=4365dc8abc9748608493215dcadbfceb`;
+  var url = `http://newsapi.org/v2/top-headlines?country=us&pageSize=${cnt}&apiKey=${NEWS_API_KEY}`;
   try {
     const news = await axios.get(url)
     dispatch(setPosts(news.data.articles,news.data.totalResults));
