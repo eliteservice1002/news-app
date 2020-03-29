@@ -41,8 +41,7 @@ export const namesOfSources = () => createSelector(
     
 )
 
-export const getFilteredNews  = () =>
-        createSelector(
+export const getFilteredNews  = createSelector(
             [newsFilteredByType,inputValue,sourceToFilter],
             (news,value,type) => {
                 if(type !== ""){
@@ -61,7 +60,7 @@ export const getFilteredNews  = () =>
 export const getSingleFilteredNews = () =>
 
         createSelector(
-            [getFilteredNews(),
+            [getFilteredNews,
             (_,match) =>match.params.url],
             (news,url) =>{
                 return news[url]
@@ -69,7 +68,7 @@ export const getSingleFilteredNews = () =>
         )
 
 export const isFullPosts  = createSelector(
-    [getFilteredNews(),news],
+    [getFilteredNews,news],
     (posts,news) =>{
         return posts.length === news.length
     }

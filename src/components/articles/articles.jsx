@@ -1,5 +1,6 @@
 import React,{memo} from 'react';
 import {Link, withRouter} from 'react-router-dom'
+import {ReactComponent as NotFound} from "./notFound.svg"
 import "./style.scss";
 
 
@@ -22,10 +23,10 @@ const Articles = ({posts,isLoadingMore,isLoading,numberOfNewsItems,currentPageCn
                 posts.map( (post,id)=>(
                         <div key={id} className={`${id%5?"col-12 col-sm-6 col-lg-4 ":"col-12 col-lg-8"}`}>
                             <Link to={`/news/${id}`}>
-                                <article  className="article article-size-color ">
+                                <article  className="article article_size_color ">
                                     <div className="atricle__additional-info atricle__additional-info-source ">{post.source.name}</div>
                                     <div className="atricle__title">{post.title}</div>
-                                    <img src={post.urlToImage} alt="" className="article_img"/>
+                                    {post.urlToImage ? <div style={{background:`url(${post.urlToImage}) no-repeat center center / cover`}}  className="article_img"/>: <NotFound/>}
                                 </article>
                             </Link>
                         </div>

@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom'
 // burger
 import Burger from '@animated-burgers/burger-slide';
 import '@animated-burgers/burger-slide/dist/styles.css' ;
-// 
 
 import "./style.scss";
 

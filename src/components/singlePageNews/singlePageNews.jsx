@@ -13,9 +13,7 @@ const SingleNews =({mainImg,title,content}) => {
     return (
         
             <div className="single-news ">
-                    <div className="single-news_img-inner col-12 pl-0 col-xl-7">
-                        <img src={mainImg} alt="" className="single-news__img-main "/>
-                    </div>
+                    <div className="single-news_img-inner col-12 pl-0 col-xl-7" style={{background:`url(${mainImg}) no-repeat center center / cover`}}/>
                     <div className="single-news__content_inner col-12 col-xl-5">
                         <div className="single-news_title">{title}</div>
                         <div className="single-news-content">{content}</div>

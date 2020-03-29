@@ -1,7 +1,6 @@
-@import "./../../mainStyles/variables.scss";
+@import "mainStyles/variables.scss";
 
-.article-size-color{
-    
+.article_size_color{
     background: $main_color_brighter;
     border-radius: 20px;
     overflow: hidden;
@@ -46,13 +45,7 @@
 
 
 .article_img{
-    
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 100%;
-    
+    height: 100%;
 }
 
 .atricle__additional-info{

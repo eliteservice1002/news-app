@@ -1,9 +1,9 @@
 import React,{memo} from 'react';
-import singlePageNews from "./../singlePageNews/singlePageNewsContainer";
+import singlePageNews from "components/singlePageNews/singlePageNewsContainer";
 import {Route,Switch} from 'react-router-dom'
-import Header from "../header/HeaderContainer"
-import Error404 from "./../erorr404"
-import Articles from "./../articles/articlesContainer"
+import Header from "components/header/HeaderContainer"
+import Error404 from "components/erorr404"
+import Articles from "components/articles/articlesContainer"
 
 
 import "./style.scss";
@@ -11,9 +11,7 @@ import "./style.scss";
 
 
 
-const News = ({
-    isLoading ,error
-    }) => {
+const News = ({error}) => {
 
         return (
             <div className=" news news-margin">
@@ -21,8 +19,7 @@ const News = ({
                     <Header/>
                     
                     <div className="news__posts">
-                        {isLoading ? loader():
-                            error == null ?(
+                        {error == null ?(
                             <Switch>
                                 <Route exact path="/" component={Articles}/>
                                 <Route exact path="/news/:url" component={singlePageNews} />
@@ -37,12 +34,6 @@ const News = ({
             </div>
     );
 }
-
-const loader = () =>(
-    <div className="news__loader">
-        <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-    </div>
-)
 
 
 
