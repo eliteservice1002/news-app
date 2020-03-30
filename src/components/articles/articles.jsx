@@ -1,5 +1,5 @@
 import React,{memo} from 'react';
-import {Link, withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {ReactComponent as NotFound} from "./notFound.svg"
 import "./style.scss";
 
@@ -7,7 +7,7 @@ import "./style.scss";
 
 
 
-const Articles = ({posts,isLoadingMore,isLoading,numberOfNewsItems,currentPageCntOfNews,location}) => {
+const Articles = ({posts,isLoadingMore,numberOfNewsItems,isEnd}) => {
     if(posts.length === 0){
         return <div className="not-founded-post">No posts were found for the specified criteria</div> 
     }
@@ -16,13 +16,13 @@ const Articles = ({posts,isLoadingMore,isLoading,numberOfNewsItems,currentPageCn
     
     return (
         <>
-        {!isLoading && <div className="news__articles-state">
+         <div className="news__articles-state">
             <div className="news__artiles-state_total">{numberOfNewsItems} news found</div>
-        </div>}
+        </div>
             {
                 posts.map( (post,id)=>(
                         <div key={id} className={`${id%5?"col-12 col-sm-6 col-lg-4 ":"col-12 col-lg-8"}`}>
-                            <Link to={`/news/${id}`}>
+                            <Link to={`/news/${post.title}`}>
                                 <article  className="article article_size_color ">
                                     <div className="atricle__additional-info atricle__additional-info-source ">{post.source.name}</div>
                                     <div className="atricle__title">{post.title}</div>
@@ -34,7 +34,7 @@ const Articles = ({posts,isLoadingMore,isLoading,numberOfNewsItems,currentPageCn
                 ))
             }
             {isLoadingMore && <div className="more-loading">Loading more news...</div>}
-            {(currentPageCntOfNews === numberOfNewsItems && location.pathname === '/') && <div className="more-loading">We found only {numberOfNewsItems} news</div>}
+            {isEnd && <div className="more-loading">We found only {numberOfNewsItems} news</div>}
            
             </>
     );
@@ -44,4 +44,4 @@ const Articles = ({posts,isLoadingMore,isLoading,numberOfNewsItems,currentPageCn
 
 
 
-export default withRouter(memo(Articles));
+export default memo(Articles);

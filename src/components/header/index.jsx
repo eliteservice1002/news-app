@@ -1,22 +1,20 @@
-import React,{useCallback,useMemo} from 'react';
+import React,{useCallback} from 'react';
 import {useDispatch,useSelector } from 'react-redux';
-import {fiterBy,searchByInputValue,fiterBySource} from "../../redux/filter-reducers";
+import {fiterBy,searchByInputValue,fiterBySource} from "redux/filter-reducers";
 import Header from "./Header"
-import {inputValueSelector,namesOfSources,isFullPosts} from "../../redux/news-selectors"
+import {inputValueSelector,namesOfSources,isFullPosts} from "redux/news-selectors"
 // import {}
 
 
 
 const HeaderContainer = () => {
 
-    const slcNamesOfSources = useMemo(namesOfSources,[])
-    const sources = useSelector(state =>slcNamesOfSources(state));
+    const sources = useSelector(state =>namesOfSources(state));
 
     const isLoading = useSelector(state =>state.news.isLoading);
     const isFullPostsParent = useSelector(state =>isFullPosts(state));
     
-    const slcInputValueSelector = useMemo(inputValueSelector,[])
-    const inputValue = useSelector(state =>slcInputValueSelector(state));
+    const inputValue = useSelector(state =>inputValueSelector(state));
     
     const dispatch = useDispatch();
 
@@ -31,10 +29,10 @@ const HeaderContainer = () => {
 
       value={inputValue}
       filterBy={useCallback((type)=>
-        dispatch(fiterBy(type)),[dispatch])}
+      dispatch(fiterBy(type)),[dispatch])}
 
       fiterBySource={useCallback((type)=>
-        dispatch(fiterBySource(type)),[dispatch])}
+      dispatch(fiterBySource(type)),[dispatch])}
 
 
       isLoading={isLoading}

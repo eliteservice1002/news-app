@@ -4,6 +4,7 @@ import uniq from 'lodash/uniq';
 
 
 const news = state => state.news.news;
+const isLoadingMore = state => state.news.isLoadingMore;
 const inputValue = state => state.filter.inputValue;
 const type = state => state.filter.type;
 const sourceToFilter = state => state.filter.sourceToFilter;
@@ -12,11 +13,15 @@ export const mainNews = createSelector(
     [news],
     news => news
 )
-export const inputValueSelector = () => createSelector(
+export const isLoadingMore_s = createSelector(
+    [isLoadingMore],
+    isLoadingMore => isLoadingMore
+)
+export const inputValueSelector =createSelector(
     [inputValue],
     value => value
 )
-export const namesOfSources = () => createSelector(
+export const namesOfSources = createSelector(
     [news],
     news =>{
         return uniq( news.map( art => art.source.name ))
@@ -57,15 +62,6 @@ export const getFilteredNews  = createSelector(
 
 
 
-export const getSingleFilteredNews = () =>
-
-        createSelector(
-            [getFilteredNews,
-            (_,match) =>match.params.url],
-            (news,url) =>{
-                return news[url]
-            }
-        )
 
 export const isFullPosts  = createSelector(
     [getFilteredNews,news],
